@@ -1,9 +1,14 @@
+import { useAuth } from "../context/authContext";
+
 export default function Home() {
+  const { user } = useAuth();
   return (
     <>
       <main>
         <section className="flex flex-col justify-center items-center py-10">
-          <h2 className="text-3xl">Home Page</h2>
+          <header className="text-3xl sm:text-2xl flex flex-wrap text-center">
+            Hello {user ? user.email : "Guest"}
+          </header>
           <h2 className="w-[80vw] py-10 text-justify text-xl font-serif">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
             nihil recusandae fuga, repudiandae consectetur magnam? Asperiores
