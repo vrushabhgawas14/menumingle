@@ -14,6 +14,17 @@ export default function Login() {
       const formData = new FormData(e.currentTarget);
       const email = await formData.get("userEmail")?.toString().toLowerCase();
       const password = await formData.get("userPassword")?.toString();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!email?.match(emailRegex)) {
+        setErrorMessage("Please enter a valid email address.");
+        return;
+      }
+
+      if (password?.length! < 6) {
+        setErrorMessage("Password must be at least 6 characters long.");
+        return;
+      }
 
       await loginUserWithEmailAndPassword(email!, password!);
 
@@ -22,12 +33,12 @@ export default function Login() {
       console.log(error);
       if (error.code === "auth/invalid-credential") {
         setErrorMessage("Email or Password is Incorrect.");
-      } else if (error.code === "auth/weak-password") {
-        setErrorMessage("Password length should be atleast 6 characters");
       } else if (error.code === "auth/wrong-password") {
         setErrorMessage("Incorrect password. Please try again.");
+      } else if (error.code === "auth/network-request-failed") {
+        setErrorMessage("Network Error. Check Internet Connection!");
       } else {
-        setErrorMessage("Error registering user: " + error.message);
+        setErrorMessage("Error Login user: " + error.message);
       }
     }
   }

@@ -14,6 +14,17 @@ export default function Register() {
       const formData = new FormData(e.currentTarget);
       const email = await formData.get("userEmail")?.toString().toLowerCase();
       const password = await formData.get("userPassword")?.toString();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!email?.match(emailRegex)) {
+        setErrorMessage("Please enter a valid email address.");
+        return;
+      }
+
+      if (password?.length! < 6) {
+        setErrorMessage("Password must be at least 6 characters long.");
+        return;
+      }
 
       await registerUserWithEmailAndPassword(email!, password!);
       setErrorMessage("User Registered Successfully!");
@@ -23,8 +34,8 @@ export default function Register() {
         setErrorMessage(
           "This email is already in use. Please use a different email."
         );
-      } else if (error.code === "auth/weak-password") {
-        setErrorMessage("Password length should be atleast 6 characters");
+      } else if (error.code === "auth/network-request-failed") {
+        setErrorMessage("Network Error. Check Internet Connection!");
       } else {
         setErrorMessage("Error registering user: " + error.message);
       }
