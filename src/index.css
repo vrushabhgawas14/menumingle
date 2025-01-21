@@ -19,3 +19,23 @@ code {
 .toggleNav {
   @apply fixed top-0 left-1/2 -translate-x-1/2 flex-col h-full z-20 space-y-10 sm:p-4 backdrop-blur-sm;
 }
+
+.normalButton {
+  background: linear-gradient(to bottom, #26081c, #53163f);
+}
+
+.navComponentColors {
+  background: linear-gradient(to right, #ffb889, #e26d5a);
+}
+
+.footerComponentColors {
+  background: linear-gradient(to bottom, #ffb889, #e26d5a);
+}
+
+.bodyBackground {
+  background: linear-gradient(to bottom, #ffd58cd7, #ffb578e5);
+}
+
+/* Russian Violet - 2C0735 */
+/* Slight Pink - #e26d5a */
+/* light skin - #dcab6b */

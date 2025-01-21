@@ -28,7 +28,7 @@ export default function Navbar() {
   return (
     <>
       <nav className="relative">
-        <section className="h-16 w-full flex justify-between px-10 sm:px-4 items-center fixed border-b-2 border-amber-900 bg-amber-200">
+        <section className="navComponentColors h-16 w-full flex justify-between px-10 sm:px-4 items-center fixed border-b-2 border-amber-900">
           <div className="text-3xl font-semibold z-30">
             <Link to="/">Menu Mingle</Link>
           </div>
@@ -52,7 +52,7 @@ export default function Navbar() {
                   to={item.url}
                   className={`${
                     isOpen &&
-                    "bg-amber-200 p-2 px-8 rounded-xl w-60 text-center shadow-md shadow-slate-800"
+                    "bg-primary p-2 px-8 rounded-xl w-60 text-center shadow-md shadow-slate-800"
                   } hover:underline`}
                 >
                   {item.title}
@@ -65,7 +65,7 @@ export default function Navbar() {
                 <>
                   <Link
                     to={"/profile"}
-                    className="bg-amber-400 hover:bg-opacity-20 text-xl hover:text-black p-1 px-8 rounded-xl text-center border-2 border-amber-900 sm:p-2 sm:px-8"
+                    className="normalButton text-red-100 hover:bg-opacity-20 text-xl hover:text-red-50 p-1 px-8 rounded-xl text-center sm:p-2 sm:px-8"
                   >
                     Profile
                   </Link>
@@ -76,7 +76,7 @@ export default function Navbar() {
                     <Link
                       key={i}
                       to={item.url}
-                      className="bg-amber-400 hover:bg-opacity-20 text-xl hover:text-black p-1 px-8 rounded-xl text-center border-2 border-amber-900 sm:p-2 sm:px-8"
+                      className="normalButton text-red-100 hover:bg-opacity-20 text-xl hover:text-red-50 p-1 px-8 rounded-xl text-center sm:p-2 sm:px-8"
                     >
                       {item.title}
                     </Link>
