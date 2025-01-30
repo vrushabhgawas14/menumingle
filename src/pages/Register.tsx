@@ -3,6 +3,7 @@ import LoginRegistrationForm from "../components/LoginRegForm";
 import { useAuth } from "../context/authContext";
 import { registerUserWithEmailAndPassword } from "../firebase/auth";
 import { useState } from "react";
+import { updateProfile } from "firebase/auth";
 
 export default function Register() {
   const { userLoggedIn } = useAuth();
@@ -12,6 +13,7 @@ export default function Register() {
     e.preventDefault();
     try {
       const formData = new FormData(e.currentTarget);
+      const name = await formData.get("userName")?.toString();
       const email = await formData.get("userEmail")?.toString().toLowerCase();
       const password = await formData.get("userPassword")?.toString();
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -26,7 +28,16 @@ export default function Register() {
         return;
       }
 
-      await registerUserWithEmailAndPassword(email!, password!);
+      const userRegsitered = await registerUserWithEmailAndPassword(
+        email!,
+        password!
+      );
+      const currUser = userRegsitered.user;
+
+      if (currUser) {
+        await updateProfile(currUser, { displayName: name, photoURL: null });
+      }
+
       setErrorMessage("User Registered Successfully!");
     } catch (error: any) {
       console.log(error);

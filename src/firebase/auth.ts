@@ -4,6 +4,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "./firebase";
 
@@ -24,7 +25,13 @@ export const loginUserWithEmailAndPassword = (
 export const doSignInWithGoogle = async () => {
   const provider = new GoogleAuthProvider();
   const result = await signInWithPopup(auth, provider);
-
+  const currUser = result.user;
+  if (currUser) {
+    await updateProfile(result.user, {
+      displayName: currUser.displayName,
+      photoURL: currUser.photoURL,
+    });
+  }
   return result;
 };
 
