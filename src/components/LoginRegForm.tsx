@@ -23,15 +23,30 @@ export default function LoginRegistrationForm({
             {errorMessage}
           </h2>
         )}
-        <section className="flex flex-col items-center py-4 lg:px-6 rounded-xl sm:w-[90vw] bg-slate-950">
-          <h1 className="text-3xl font-bold">
+        <section className="flex flex-col items-center py-4 lg:px-6 rounded-xl w-[40vw] sm:w-[90vw] bg-slate-950">
+          <h1 className="text-3xl font-bold py-4">
             {isLogin ? "Login" : "Registration"}
           </h1>
-          <div className="py-6 flex flex-col items-center space-y-2">
+          <div className="py-6 flex flex-col items-center space-y-2 w-full">
             <form
               onSubmit={handleSubmit}
-              className="flex flex-col items-center space-y-4"
+              className="flex flex-col items-center space-y-4 lg:w-[90%]"
             >
+              {!isLogin && (
+                <div className="flex items-center justify-between w-full font-semibold">
+                  <label htmlFor="userName" className="text-xl cursor-pointer">
+                    Name :
+                  </label>
+                  <input
+                    id="userName"
+                    name="userName"
+                    type="text"
+                    required
+                    placeholder="John Doe"
+                    className="px-2 pl-3 py-1 lg:w-[65%] sm:w-[50vw] rounded-xl text-teal-900 outline-none sm:text-xl"
+                  />
+                </div>
+              )}
               <div className="flex items-center justify-between w-full font-semibold space-x-4">
                 <label htmlFor="userEmail" className="text-xl cursor-pointer">
                   Email :
@@ -42,7 +57,7 @@ export default function LoginRegistrationForm({
                   type="text"
                   required
                   placeholder="john@gmail.com"
-                  className="px-2 pl-3 py-1 sm:w-[50vw] rounded-xl text-teal-900 outline-none"
+                  className="px-2 pl-3 py-1 lg:w-[65%] sm:w-[50vw] rounded-xl text-teal-900 outline-none"
                 />
               </div>
               <div className="flex items-center justify-between w-full font-semibold space-x-4 pb-2">
@@ -58,7 +73,7 @@ export default function LoginRegistrationForm({
                   type="password"
                   required
                   placeholder="john@123"
-                  className="px-2 pl-3 py-1 sm:w-[50vw] rounded-xl text-teal-900 outline-none"
+                  className="px-2 pl-3 py-1 lg:w-[65%] sm:w-[50vw] rounded-xl text-teal-900 outline-none"
                 />
               </div>
               <button
